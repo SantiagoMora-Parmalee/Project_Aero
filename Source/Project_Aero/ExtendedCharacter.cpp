@@ -1,23 +1,29 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
+// Copyright notice placeholder - fill out in the Project Settings
 
 #include "ExtendedCharacter.h"
 #include "ExtendedMovementComponent.h"
 
-// Sets default values
-AExtendedCharacter::AExtendedCharacter(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer.SetDefaultSubobjectClass<UExtendedMovementComponent>(ACharacter::CharacterMovementComponentName))
+// Constructor for the AExtendedCharacter class
+// Initializes the character and sets the default subobject for movement component to UExtendedMovementComponent
+AExtendedCharacter::AExtendedCharacter(const FObjectInitializer& ObjectInitializer)
+    : Super(ObjectInitializer.SetDefaultSubobjectClass<UExtendedMovementComponent>(ACharacter::CharacterMovementComponentName))
 {
-	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
-	EMC = Cast<UExtendedMovementComponent>(GetCharacterMovement());
+    // Enable ticking (the character's Update() function will be called every frame)
+    // Set this to false to improve performance if tick functionality is not needed.
+    PrimaryActorTick.bCanEverTick = true;
+
+    // Retrieve the character's movement component and cast it to the custom UExtendedMovementComponent
+    EMC = Cast<UExtendedMovementComponent>(GetCharacterMovement());
 }
 
+// Starts gliding by setting the gliding state to true in the movement component
 void AExtendedCharacter::StartGlide()
 {
-	EMC->SetGliding(true);
+    EMC->SetGliding(true);  // Set the gliding state in the movement component
 }
 
+// Stops gliding by setting the gliding state to false in the movement component
 void AExtendedCharacter::StopGlide()
 {
-	EMC->SetGliding(false);
+    EMC->SetGliding(false);  // Set the gliding state to false, stopping the glide
 }
